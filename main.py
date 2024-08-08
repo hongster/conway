@@ -1,5 +1,5 @@
 """
-Project for learning Pyxel. This game simulates Conway's Way Of Life.
+Project for learning Pyxel. This game simulates Conway's Game Of Life.
 
 Game rules: https://www.wikiwand.com/en/Conway%27s_Game_of_Life
  - Any live cell with fewer than two live neighbours dies, as if by underpopulation.
@@ -17,7 +17,7 @@ class App:
 
     def __init__(self):
         pyxel.init(App.SPACE_WIDTH, App.SPACE_HEIGHT, "Conway's Game Of Life")
-        
+
         # Update interval in milliseconds
         self.update_interval = 1000
         # Timestamp in milliseconds
@@ -40,7 +40,7 @@ class App:
             return
 
         self._update_cells()
-        
+
         self.prev_update_time = int(time() * 1000)
 
     def draw(self):
@@ -50,10 +50,10 @@ class App:
             for y in range(len(self.cells[x])):
                 if self.cells[x][y] == 1:
                     pyxel.pset(x, y, pyxel.COLOR_LIME)
-    
+
     def _new_empty_cells(width, height, population = 0):
         """Create new state with random living cells
-        
+
         Args:
             width (int): Width of the space
             height (int): Height of the space
@@ -75,12 +75,12 @@ class App:
                 population -= 1
 
         return cells
-    
+
     def _update_cells(self):
         """Update cells for new iteration"""
 
         new_cells = App._new_empty_cells(App.SPACE_WIDTH, App.SPACE_HEIGHT)
-        
+
         for x in range(len(self.cells)):
             for y in range(len(self.cells[x])):
                 if self.cells[x][y] == 1:
